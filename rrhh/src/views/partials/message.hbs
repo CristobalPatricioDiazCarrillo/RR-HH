@@ -1,8 +1,7 @@
 	{{#if message}}
-		<div class="container p-4">
 			<div class="row">
 				<div class="col-md-4 mx-auto">
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top:4%">
 						{{message}}
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -10,14 +9,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	{{/if}}
 	
 	{{#if success}}
-		<div class="container p-4">
 			<div class="row">
 				<div class="col-md-4 mx-auto">
-					<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top:4%">	
 						{{success}}
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -25,5 +22,5 @@
 					</div>
 				</div>
 			</div>
-		</div>
+
 	{{/if}}

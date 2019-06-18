@@ -1,0 +1,359 @@
+<div style="padding-top: 2.2%; padding-bottom: 1%;">
+	<div class="row" style="">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script>
+				$(document).ready(function() {
+					var original = document.getElementById('myImgn').src;
+
+					$(document).on('change', 'input[type=file]', function(e){
+						if (e.target.files[0]){
+							var TmpPath = URL.createObjectURL(e.target.files[0]);
+							document.getElementById('myImgn').src = TmpPath;
+						}
+						else {
+							document.getElementById('myImgn').src = original;
+						}
+					});
+				});
+		</script>
+		<div class="col-md-12">
+			<nav aria-label="breadcrumb" style="margin-left: 0.9%; margin-right: 0.9%;">
+				<ol class="breadcrumb" style="padding-left: 2.7%; background-color: white; padding-top: 2.51%; padding-bottom: 2.51%; border-radius: 10px;">
+					<li class="breadcrumb-item"><a href="/profile">INICIO</a></li>
+					<li class="breadcrumb-item"><a href="/workers">TRABAJADORES</a></li>
+					<li class="breadcrumb-item active">AGREGAR TRABAJADOR</li>
+				</ol>
+			</nav>
+		</div>	
+	</div>
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-9">
+					<h4 class="text-uppercase m-2">
+						AGREGAR TRABAJADOR
+					</h4>
+				</div>
+			</div>		
+		</div>
+		<div class="card-body" style="background-color: #DAD9D4;">
+			<form action="/workers/add" method="POST" enctype="multipart/form-data">
+				<div class="row" style="padding-bottom: 1%">
+					<div class="col-md-3 mx-auto m-2 text-center">
+						<img src="/default.jpg" id="myImgn" alt="Perfil" class="card-img-top mx-auto m-2 rounded-circle" style="height: 25vh; width: 25vh;">
+						<div class="form-group">
+							<input type="file" class="form-control" name="file">
+						</div>
+					</div>
+					<div class="col-md-9" style="background-color: white;">
+						<h6>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Nombres:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus style="width: 80%; text-transform: uppercase;" maxlength="50">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Apellidos:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="apellido" placeholder="Apellido" style="width: 80%; text-transform: uppercase;" maxlength="50">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Rut:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="rut" placeholder="Rut" style="width: 40%;" maxlength="10">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Fecha de nacimiento:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="date" class="form-control" name="fecha_nacimiento" placeholder="Fecha de nacimiento" style="width: 45%;">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Area:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<select class="browser-default custom-select" name="area" style="width: 30%; margin-right: 1%;">
+										{{#each areas}}
+											<option value="{{nombre}}">{{nombre}}</option>
+										{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Correo:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="correo" placeholder="Correo" style="width: 80%;" maxlength="40">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Telefono:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="telefono" placeholder="Telefono" style="width: 40%;" maxlength="9">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Nacionalidad:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="nacionalidad" placeholder="Nacionalidad" style="width: 55%;" maxlength="30">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Estado Civil:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<select class="browser-default custom-select" name="estado_civil" style="width: 40%; margin-right: 1%;">
+										<option value="Soltero" selected>Soltero/a</option>
+										<option value="Casado">Casado/a</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Genero:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<select class="browser-default custom-select" name="genero" style="width: 45%; margin-right: 1%;">
+										<option value="Masculino" selected>Masculino</option>
+										<option value="Femenino">Femenino</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Region:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<select class="browser-default custom-select" name="region" style="width: 60%; margin-right: 1%;">
+										<option value="Region de Tarapaca" selected>Region de Tarapaca</option>
+										<option value="Region de Antofagasta">Region de Antofagasta</option>
+										<option value="Region de Atacama">Region de Atacama</option>
+										<option value="Region de Coquimbo">Region de Coquimbo</option>
+										<option value="Region de Valparaiso">Region de Valparaiso</option>
+										<option value="Region dek Libertador General Bernado Ohiggins">Region del Libertador General Bernado Ohiggins</option>
+										<option value="Region del Maule">Region del Maule</option>
+										<option value="Region de Concepcion">Region de Concepcion</option>
+										<option value="Region de la Araucania">Region de la Araucania</option>
+										<option value="Region de los Lagos">Region de los Lagos</option>
+										<option value="Region de Aysen">Region de Aysen</option>
+										<option value="Region de Magallanes y Antartica Chilena">Region de Magallanes y Antartica Chilena</option>
+										<option value="Region Metropolitana">Region Metropolitana</option>
+										<option value="Region de los Rios">Region de los Rios</option>
+										<option value="Region de Arica y Parinacota">Region de Arica y Parinacota</option>
+										<option value="Region del Nuble">Region del Nuble</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Comuna:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="comuna" placeholder="Comuna" style="width: 60%;" maxlength="55">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Direccion:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="direccion" placeholder="Direccion" style="width: 80%;" maxlength="50">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Nivel de Estudios:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<select class="browser-default custom-select" name="nivel_estudios" style="width: 50%; margin-right: 1%;">
+										<option value="Basica Incompleta" selected>Basica Incompleta</option>
+										<option value="Basica">Basica</option>
+										<option value="Media Incompleta">Media Incompleta</option>
+										<option value="Media">Media</option>
+										<option value="Superior Incompleta">Superior Incompleta</option>
+										<option value="Superior">Superior</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">N° Capacitaciones:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="num_capacitacion" style="width: 20%;" maxlength="2">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Nivel de Capacitacion:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<input type="text" class="form-control" name="nivel_capacitacion" style="width: 20%;" maxlength="2">
+								</div>
+							</div>
+						</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 text-center">
+						
+					</div>
+					<div class="col-md-4 text-center">
+						<center>
+						<div class="form-group">
+							<button class="btn btn-success btn-block" style="width: 40%">
+								Guardar
+							</button>
+						</div>
+						</center>
+					</div>
+					<div class="col-md-4 text-center">
+						
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+	<!--
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+			
+			<div class="card">
+				<div class="card-header">
+					<h4>Agregar Trabajador</h4>
+				</div>
+				<div class="card-body">
+					<form action="/workers/add" method="POST" enctype="multipart/form-data">
+						<center><img src="/default.jpg" id="myImgn" alt="Perfil" class="card-img-top mx-auto m-2 rounded-circle" style="height: 25vh; width: 25vh;"></center>
+						<div class="form-group">
+							<input type="file" class="form-control" name="file">
+						</div>
+						<div class="form-group">
+							<h6>Nombres:</h6> 
+							<input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus style="width: 80%;">
+						</div>
+						<div class="form-group">
+							<h6>Apellidos:</h6>
+							<input type="text" class="form-control" name="apellido" placeholder="Apellido" style="width: 80%;">
+						</div>
+						<div class="form-group">
+							<h6>Rut:</h6>
+							<input type="text" class="form-control" name="rut" placeholder="Rut" style="width: 40%;">
+						</div>
+						<div class="form-group">
+							<h6>Fecha de Nacimiento:</h6>
+							<input type="date" class="form-control" name="fecha_nacimiento" placeholder="Fecha de nacimiento" style="width: 45%;">
+						</div>
+						<div class="form-group">
+							<h6>Area:</h6>
+							<select class="browser-default custom-select" name="area" style="width: 30%; margin-right: 1%;">
+								{{#each areas}}
+									<option value="{{nombre}}">{{nombre}}</option>
+								{{/each}}
+							</select>
+						</div>
+						<div class="form-group">
+							<h6>Correo:</h6>
+							<input type="text" class="form-control" name="correo" placeholder="Correo" style="width: 80%;">
+						</div>
+						<div class="form-group">
+							<h6>Telefono:</h6>
+							<input type="text" class="form-control" name="telefono" placeholder="Telefono" style="width: 40%;">
+						</div>
+						<div class="form-group">
+							<h6>Nacionalidad:</h6>
+							<input type="text" class="form-control" name="nacionalidad" placeholder="Nacionalidad" style="width: 55%;">
+						</div>
+						<div class="form-group">
+							<h6>Estado Civil:</h6>
+							<select class="browser-default custom-select" name="estado_civil" style="width: 40%; margin-right: 1%;">
+								<option value="Soltero" selected>Soltero/a</option>
+								<option value="Casado">Casado/a</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<h6>Genero:</h6>
+							<select class="browser-default custom-select" name="genero" style="width: 45%; margin-right: 1%;">
+								<option value="Masculino" selected>Masculino</option>
+								<option value="Femenino">Femenino</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<h6>Region:</h6>
+							<select class="browser-default custom-select" name="region" style="width: 60%; margin-right: 1%;">
+								<option value="Region de Tarapaca" selected>Region de Tarapaca</option>
+								<option value="Region de Antofagasta">Region de Antofagasta</option>
+								<option value="Region de Atacama">Region de Atacama</option>
+								<option value="Region de Coquimbo">Region de Coquimbo</option>
+								<option value="Region de Valparaiso">Region de Valparaiso</option>
+								<option value="Region dek Libertador General Bernado Ohiggins">Region del Libertador General Bernado Ohiggins</option>
+								<option value="Region del Maule">Region del Maule</option>
+								<option value="Region de Concepcion">Region de Concepcion</option>
+								<option value="Region de la Araucania">Region de la Araucania</option>
+								<option value="Region de los Lagos">Region de los Lagos</option>
+								<option value="Region de Aysen">Region de Aysen</option>
+								<option value="Region de Magallanes y Antartica Chilena">Region de Magallanes y Antartica Chilena</option>
+								<option value="Region Metropolitana">Region Metropolitana</option>
+								<option value="Region de los Rios">Region de los Rios</option>
+								<option value="Region de Arica y Parinacota">Region de Arica y Parinacota</option>
+								<option value="Region del Nuble">Region del Nuble</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<h6>Comuna:</h6>
+							<input type="text" class="form-control" name="comuna" placeholder="Comuna" style="width: 60%;">
+						</div>
+						<div class="form-group">
+							<h6>Direccion:</h6>
+							<input type="text" class="form-control" name="direccion" placeholder="Direccion" style="width: 80%;">
+						</div>
+						<div class="form-group">
+							<h6>Nivel de Estudios:</h6>
+							<select class="browser-default custom-select" name="nivel_estudios" style="width: 50%; margin-right: 1%;">
+								<option value="Basica Incompleta" selected>Basica Incompleta</option>
+								<option value="Basica">Basica</option>
+								<option value="Media Incompleta">Media Incompleta</option>
+								<option value="Media">Media</option>
+								<option value="Superior Incompleta">Superior Incompleta</option>
+								<option value="Superior">Superior</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<h6>Nivel de Capacitacion:</h6>
+							<input type="text" class="form-control" name="nivel_capacitacion" style="width: 20%;">
+						</div>
+						<div class="form-group">
+							<h6>Numero de Capacitaciones:</h6>
+							<input type="text" class="form-control" name="num_capacitacion" style="width: 20%;">
+						</div>
+						<div class="form-group">
+							<button class="btn btn-success btn-block">
+								Guardar
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+-->

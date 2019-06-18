@@ -6,8 +6,15 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
+const multer = require('multer');
 
 const { database } = require('./keys');
+const storage = multer.diskStorage({
+	destination: path.join(__dirname, 'image'),
+	filename: (req, file, cb) => {
+		cb(null, req.params.id + path.extname(file.originalname));
+	}
+});
 
 // inicializacion
 const app = express();
@@ -38,6 +45,19 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(multer({
+	storage: storage,
+	dest: path.join(__dirname, 'image'),
+	fileFilter: (req, file, cb) => {
+		const filetypes = /jpeg|jpg|png/;
+		const mimetype = filetypes.test(file.mimetype);
+		const extname = filetypes.test(path.extname(file.originalname));
+		if (mimetype && extname) {
+			return cb(null,true);
+		}
+		cb("Error archivo no soportado");
+	}
+}).single('file'));
 
 // variables globales
 app.use((req, res, next) => {
@@ -50,10 +70,12 @@ app.use((req, res, next) => {
 // rutas
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
-app.use('/trabajadores', require('./routes/trabajadores'));
+app.use('/workers', require('./routes/workers'));
+app.use('/trainings', require('./routes/trainings'));
 
 // public
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'image')));
 
 // inicializacion servidor
 app.listen(app.get('port'), ()=>{

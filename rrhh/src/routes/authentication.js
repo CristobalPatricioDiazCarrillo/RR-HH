@@ -26,7 +26,7 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
-	res.render('perfil');
+	res.render('other/profile');
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {

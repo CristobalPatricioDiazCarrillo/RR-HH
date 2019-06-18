@@ -13,7 +13,7 @@ passport.use('local.signin', new LocalStrategy({
 		const user = rows[0];
 		const validPassword = await helpers.matchPassword(password, user.password);
 		if (validPassword) {
-			done(null, user, req.flash('success', 'Bienvenido' + user.nombre));
+			done(null, user, req.flash('success', 'Bienvenido ' + user.nombre));
 		} else {
 			done(null, false, req.flash('message', 'Constraseña Incorrecta'));
 		}

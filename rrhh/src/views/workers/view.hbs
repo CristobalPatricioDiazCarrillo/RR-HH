@@ -1,0 +1,208 @@
+<div style="padding-top: 2.2%; padding-bottom: 1%;">
+	<div class="row" style="">
+		<div class="col-md-12">
+			<nav aria-label="breadcrumb" style="margin-left: 0.9%; margin-right: 0.9%;">
+				<ol class="breadcrumb" style="padding-left: 2.7%; background-color: white; padding-top: 2.51%; padding-bottom: 2.51%; border-radius: 10px;">
+					<li class="breadcrumb-item"><a href="/profile">INICIO</a></li>
+					<li class="breadcrumb-item"><a href="/workers">TRABAJADORES</a></li>
+					{{#each trabajador}}
+					<li class="breadcrumb-item active"><font style="text-transform: capitalize;">{{nombre}} {{apellido}}</font></li>
+					{{/each}}
+				</ol>
+			</nav>
+		</div>	
+	</div>
+		
+	{{#each trabajador}}
+		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-9">
+						<h4 class="text-uppercase m-2">
+							{{nombre}} {{apellido}}
+						</h4>
+					</div>
+					<div class="col-md-3 text-center">
+						<a href="/workers/delete/{{id}}" class="btn btn-danger">Eliminar</a>
+						<a href="/workers/edit/{{id}}" class="btn btn-secondary">Actualizar</a>
+					</div>
+				</div>		
+			</div>
+			<div class="card-body" style="background-color: #DAD9D4;">
+				<div class="row" style="padding-bottom: 1%">
+					<div class="col-md-3 mx-auto m-2 text-center">
+						<img src="/{{image}}.jpg" alt="" class="card-img-top mx-auto m-2 rounded-circle" style="height: 25vh; width: 25vh;">
+					</div>
+					<div class="col-md-9" style="background-color: white;">
+						<h6>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Nombres:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{nombre}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Apellidos:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{apellido}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Rut:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{rut}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Fecha de nacimiento:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{fecha_nacimiento}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Area:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{area}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Correo:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{correo}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Telefono:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">+569 {{telefono}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Nacionalidad:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{nacionalidad}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Estado Civil:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{estado_civil}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Genero:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{genero}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Region:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{region}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Comuna:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{comuna}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Direccion:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{direccion}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">Nivel de Estudios:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{nivel_estudios}}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4" style="">
+									<p class="m-2">N° Capacitaciones:</p>
+								</div>
+								<div class="col-md-8" style="color:gray">
+									<p class="m-2">{{num_capacitacion}}</p>
+								</div>
+							</div>
+						</h6>
+					</div>
+				</div>
+				{{/each}}
+				<div class="card">
+					<div class="card-header">
+						<b>Observaciones</b>
+					</div>
+					<div class="card-body">
+						{{#each descripciones}}
+						<div class="card" style="margin-bottom: 2%;">
+							<div class="card-header">
+								<div class="row">
+									<div class="col-md-10">
+										<b>{{asunto}}</b>
+									</div>
+									<div class="col-md-2 text-center">
+										{{fecha}}
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<p>{{descripcion}}</p>
+							</div>
+						</div>
+						<div ></div>
+						{{/each}}
+					</div>
+					<div class="card-header">
+						<b>Agregar Observacion</b>
+					</div>
+					<div class="card-body">
+						<center>
+							<form action="/view/{{trabajador.id}}" method="POST">
+								<div class="form-group">
+									<input type="text" name="asunto" class="form-control" placeholder="Asunto" style="max-width: 70%">
+									<input type="date" name="fecha_desc" class="form-control" placeholder="Fecha" style="max-width: 70%">
+									<textarea name="descripcion" rows="8" class="form-control" placeholder="Descripcion" style="max-width: 70%"></textarea>
+								</div>
+								<div class="form-group">
+									<button class="btn btn-success">
+										Guardar
+									</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
