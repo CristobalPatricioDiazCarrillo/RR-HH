@@ -1,0 +1,90 @@
+<div style="padding-top: 2.2%; padding-bottom: 1%;">
+	<div class="row" style="">
+		<div class="col-md-12">
+			<nav aria-label="breadcrumb" style="margin-left: 0.9%; margin-right: 0.9%;">
+				<ol class="breadcrumb" style="padding-left: 2.7%; background-color: white; padding-top: 2.51%; padding-bottom: 2.51%; border-radius: 10px;">
+					<li class="breadcrumb-item"><a href="/profile">INICIO</a></li>
+					<li class="breadcrumb-item"><a href="/trainings">CAPACITACIONES</a></li>
+					{{#each capacitacion}}
+					<li class="breadcrumb-item"><a href="/trainings/view/{{id}}"><font style="text-transform: uppercase;">{{nombre}}</font></a></li>
+					<li class="breadcrumb-item active">EDITAR CAPACITACION</li>
+					{{/each}}
+				</ol>
+			</nav>
+		</div>	
+	</div>
+	{{#each capacitacion}}
+		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-9">
+						<h4 class="text-uppercase m-2">
+							EDITAR CAPACITACION
+						</h4>
+					</div>
+				</div>		
+			</div>
+			<div class="card-body" style="background-color: #DAD9D4;">
+				<form action="/trainings/edit/{{id}}" method="POST">
+					<div class="row" style="padding-bottom: 1%">
+						<div class="col-md-1">
+						</div>
+						<div class="col-md-10">
+							<h6>
+								<div class="row" style="background-color: white; padding-top: 1%;">	
+									<div class="col-md-6">
+									Nombre:
+									</div>
+									<div class="col-md-6" style="color:gray;">
+										<input type="text" class="form-control" name="nombre" value="{{nombre}}">
+									</div>
+								</div>
+								<div class="row" style="background-color: white; padding-top: 1%;">	
+									<div class="col-md-6">
+									Fecha:
+									</div>
+									<div class="col-md-6" style="color:gray;">
+										<input type="date" class="form-control" value="{{fecha}}" name="fecha">
+									</div>
+								</div>
+								<div class="row" style="background-color: white; padding-top: 1%;">	
+									<div class="col-md-6">
+									Descripción:
+									</div>
+									<div class="col-md-6" style="color:gray;">
+										<textarea name="descripcion" rows="5" class="form-control" placeholder="Descripcion" style="max-width: 70%">{{descripcion}}</textarea>
+									</div>
+								</div>
+								<div class="row" style="background-color: white; padding-top: 1%; padding-bottom: 1%">	
+									<div class="col-md-6">
+									Area:
+									</div>
+									<div class="col-md-6" style="color:gray;">
+										<a class="btn btn-secondary" >{{area}}</a>
+									</div>
+								</div>
+							</h6>
+						</div>
+						<div class="col-md-1">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-center">
+						</div>
+						<div class="col-md-4 text-center">
+							<center>
+							<div class="form-group">
+								<button class="btn btn-success btn-block" style="width: 40%">
+									Guardar
+								</button>
+							</div>
+							</center>
+						</div>
+						<div class="col-md-4 text-center">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	{{/each}}
+</div>

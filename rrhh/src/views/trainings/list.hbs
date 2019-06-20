@@ -16,7 +16,6 @@
 					{{#each areas}}
 						<option value="{{nombre}}">{{nombre}}</option>
 					{{/each}}
-					<option value="all">All</option>
 				</select>
 		    	<button class="btn btn-primary" type="submit" style="margin-right: 1%;">Search</button>
 		    	<a href="/trainings/add" class="btn btn-secondary">Agregar</a>
@@ -30,7 +29,7 @@
 					<div class="card-header">
 						<div class="row text-left">
 							<div class="col-md-9">
-								<b>{{nombre}}</b>
+								<b><a href="/trainings/view/{{id}}">{{nombre}}</a></b>
 							</div>
 							<div class="col-md-3 text-right">
 								{{fecha}}

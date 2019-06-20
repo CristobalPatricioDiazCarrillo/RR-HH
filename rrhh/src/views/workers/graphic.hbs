@@ -1,0 +1,137 @@
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<div>
+	<h2 style="color:#FFFFFF" > Seleccione lo que desea graficar: 
+		<select  onclick="click_list()" id ="lista">
+		  <option value="Seleccione">Seleccione tipo.</option>
+		  <option value="Estudios">Estudios de trabajadores.</option>
+		  <option value="nivel_cap">Nivel de capacitaciones</option>
+		</select>
+	</h2>
+</div>	
+<script type="text/javascript"> 
+var count = 0; 
+function click_list(){
+	if (count == 1) {
+		var list = document.getElementById("lista");
+		var value = list.value;
+		count = 0;
+		if (value=='Estudios') {
+			$(document).ready(function(){
+				var basin = document.getElementById('basin');
+				var bas_in = basin.innerHTML;
+				var bascom = document.getElementById('bascom');
+				var bas_com = bascom.innerHTML;
+				var medin = document.getElementById('medin');
+				var med_in = medin.innerHTML;
+				var medcom = document.getElementById('medcom');
+				var med_com = medcom.innerHTML;
+				var supin = document.getElementById('supin');
+				var sup_in = supin.innerHTML;
+				var sup_com = document.getElementById('supcom');
+				var sup_com = supcom.innerHTML;
+				var datos ={
+					type: "pie",
+					data : {
+						datasets : [{
+							data : [
+								Number(bas_in),
+								Number(bas_com),
+								Number(med_in),
+								Number(med_com),
+								Number(sup_in),
+								Number(sup_com),
+							],
+							backgroundColor: [
+								"#0000FF",
+								"#00A270",
+								"#9F2952",
+								"#ECE167",
+								"#EC010F",
+								"#927794",
+							],
+						}],
+						labels : [
+							"Basica Incompleta",
+							"Basica Completa",
+							"Media Incompleta",
+							"Media Completa",
+							"Superior Incompleta",
+							"Superior Completa",
+						]
+					},
+					options : {
+						responsive : true,
+					}
+				};
+
+				var canvas = document.getElementById('chart').getContext('2d');
+				window.pie = new Chart(canvas, datos);
+
+
+			});
+			document.getElementById("canvas-container").innerHTML="<h1 style='color:#FFFFFF';>Estudios de trabajadores</h1><canvas id='chart' width='500' height='350'></canvas><font size='1'><div style='visibility: hidden'>{{#each bas_in}}<p id='basin'>{{'count(nivel_estudios)'}}</p>{{else}}<p id='basin'>0</p>{{/each}}{{#each bas_com}}<p id='bascom'>{{'count(nivel_estudios)'}}</p>{{else}}<p id='bascom'>0</p>{{/each}}{{#each med_in}}<p id='medin'>{{'count(nivel_estudios)'}}</p>{{else}}<p id='medin'>0</p>{{/each}}{{#each med_com}}<p id='medcom'>{{'count(nivel_estudios)'}}</p>{{else}}<p id='medcom'>0</p>{{/each}}{{#each sup_in}}<p id='supin'>{{'count(nivel_estudios)'}}</p>{{else}}<p id='supin'>0</p>{{/each}}{{#each sup_com}}<p id='supcom'>{{'count(nivel_estudios)'}}</p>{{else}}<p id='supcom'>0</p>{{/each}}</div></font>";
+		}
+		if (value == 'nivel_cap') {
+			$(document).ready(function(){
+				
+				var datos ={
+					type: "bar",
+					data : {
+						datasets : [{
+							label: '#Nivel de capacitaciones por area.',
+							data : [
+								26,
+								28,
+							],
+							backgroundColor: [
+								'rgba(100,100,100,0.5)',
+								'rgba(100,100,100,0.5)',
+								
+							],
+							borderColor: [
+								'rgba(200,200,200,1)',
+								'rgba(200,200,200,1)',
+								
+							],
+							borderWidth: 2,
+
+						}],
+						labels : [
+							"RRHH",
+							"Ventas",
+							
+						]
+					},
+					options : {
+						responsive : true,
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+				};
+
+				var canvas = document.getElementById('chart').getContext('2d');
+				window.pie = new Chart(canvas, datos);
+
+
+			});
+			document.getElementById("canvas-container").innerHTML="<h1 style='color:#FFFFFF';>Estudios de trabajadores</h1><canvas id='chart' width='500' height='350'></canvas><font size='1'><div>{{#each areas}}<p id='basin'>{{ventas}}</p>{{else}}<p id='basin'>0</p>{{/each}}</div></font>";
+			console.log(document.getElementById('basin'))
+		}
+	}
+	else{
+		count = 1;
+	}
+
+}
+
+
+</script>
+<center>
+<div id="canvas-container" style="width: 50%;">
+</div>
+</center>

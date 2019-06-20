@@ -1,0 +1,85 @@
+<div style="padding-top: 2.2%; padding-bottom: 1%;">
+	<div class="row" style="">
+		<div class="col-md-12">
+			<nav aria-label="breadcrumb" style="margin-left: 0.9%; margin-right: 0.9%;">
+				<ol class="breadcrumb" style="padding-left: 2.7%; background-color: white; padding-top: 2.51%; padding-bottom: 2.51%; border-radius: 10px;">
+					<li class="breadcrumb-item"><a href="/profile">INICIO</a></li>
+					<li class="breadcrumb-item active"><font style="text-transform: uppercase;">AREAS</font></li>
+				</ol>
+			</nav>
+		</div>	
+	</div>	
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-9">
+					<h4 class="text-uppercase m-2">
+						AREAS
+					</h4>
+				</div>
+			</div>		
+		</div>
+		<div class="card-body" style="background-color: #DAD9D4;">
+			<div class="card">
+				<div class="card-header">
+					<b>Trabajadores</b>
+				</div>
+				<div class="card-body">
+					<div class="container" style="border:solid;">
+						<b>
+							<div class="row" style="border-bottom:solid;">
+								<div class="col-md-5" style="border-right: solid;">
+									ID
+								</div>
+								<div class="col-md-5" style="border-right: solid;">
+									NOMBRE
+								</div>
+								<div class="col-md-2" style="">
+									
+								</div>
+							</div>
+						</b>
+						{{#each areas}}
+						<div class="row" style="border-bottom:solid 1px;">
+							<div class="col-md-5" style="border-right: solid 1px;">
+								{{id}}
+							</div>
+							<div class="col-md-5 text-center" style="border-right: solid 1px;">
+								{{nombre}}
+							</div>
+							<div class="col-md-2 text-center" style="border-right: solid 1px;">
+								<form action="/area/delete/{{nombre}}" method="POST">
+									<button type="submit" class="btn btn-secondary">-</button>
+								</form>
+							</div>
+						</div>
+						{{/each}}				
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<b>AGREGAR AREA</b>
+				</div>
+				<div class="card-body">
+					<form action="/area/add" method="POST">
+						<div class="row">
+							<div class="col-md-2">
+							</div>
+							<div class="col-md-5 text-center">
+								<input type="text" class="form-control" name="nombre" placeholder="Nombre" style="width: 100%">
+							</div>
+							<div class="col-md-5 text-center">
+								<div class="form-group">
+									<button class="btn btn-success btn-block" style="width: 40%">
+										Guardar
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

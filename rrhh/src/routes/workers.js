@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 
 router.get('/', isLoggedIn, async (req, res) => {
-	const trabajadores = await pool.query('SELECT * FROM trabajadores');
+	const trabajadores = await pool.query('SELECT * FROM trabajadores WHERE estado=0');
 	for (var i = 0; i<trabajadores.length; i++) {
 		var nombre = trabajadores[i].nombre;
 		var apellido = trabajadores[i].apellido;
@@ -79,7 +79,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
 
 router.get('/delete/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
-	await pool.query('DELETE FROM trabajadores WHERE id = ?', [id]);
+	await pool.query('UPDATE trabajadores SET area = ?, estado = 1 WHERE id = ?', ["Eliminado", id]);
 	req.flash('success', 'Trabajador removido satisfactoriamente');
 	res.redirect('/workers');
 });
@@ -93,7 +93,7 @@ router.get('/edit/:id', isLoggedIn, async (req, res) => {
 
 router.post('/edit/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
-	var { nombre, apellido, rut, fecha_nacimiento, area, correo, telefono, nacionalidad, estado_civil, genero, region, comuna, direccion, nivel_estudios, nivel_capacitacion, num_capacitacion } = req.body;
+	var { nombre, apellido, rut, fecha_nacimiento, area, correo, telefono, nacionalidad, estado_civil, genero, region, comuna, direccion, nivel_estudios } = req.body;
 	nombre = nombre.toUpperCase();
 	apellido = apellido.toUpperCase();
 	var image;
@@ -130,8 +130,6 @@ router.post('/edit/:id', isLoggedIn, async (req, res) => {
 		comuna,
 		direccion,
 		nivel_estudios,
-		nivel_capacitacion,
-		num_capacitacion,
 		image
 	};
 	await pool.query('UPDATE trabajadores SET ? WHERE id= ?', [newTrabajador, id]);
@@ -151,7 +149,12 @@ router.get('/search/:search', isLoggedIn, async (req, res) => {
 		var trabajadores = await pool.query('SELECT * FROM trabajadores WHERE nombre LIKE ? or apellido LIKE ?', [search, search]);
 	}
 	if (search == 'none' && area != 'none') {
-		var trabajadores = await pool.query('SELECT * FROM trabajadores WHERE area = ?', [area]);
+		if (area == 'eliminados'){
+			var trabajadores = await pool.query('SELECT * FROM trabajadores WHERE estado = 1');
+		}
+		else{
+			var trabajadores = await pool.query('SELECT * FROM trabajadores WHERE area = ?', [area]);
+		}	
 	}
 	if (search != 'none' && area != 'none') {
 		search = '%'+search+'%';
@@ -209,6 +212,31 @@ router.post('/view/:id', isLoggedIn, async (req,res) => {
 	var nDescripcion = req.body.descripcion;
 	await pool.query('INSERT INTO descripciones(id_t,asunto,fecha,descripcion) VALUES (?,?,?,?)', [id,asunto,fecha,nDescripcion]);
 	res.redirect('/workers/view/'+id);
+});
+
+router.get('/graphic', isLoggedIn, async (req, res) => {
+	const bas_in = await pool.query('SELECT count(nivel_estudios) FROM `trabajadores` WHERE nivel_estudios="Basica Incompleta"');
+	const bas_com = await pool.query('SELECT count(nivel_estudios) FROM `trabajadores` WHERE nivel_estudios="Basica"');
+	const med_in = await pool.query('SELECT count(nivel_estudios) FROM `trabajadores` WHERE nivel_estudios="Media Incompleta"');
+	const med_com = await pool.query('SELECT count(nivel_estudios) FROM `trabajadores` WHERE nivel_estudios="Media"');
+	const sup_in = await pool.query('SELECT count(nivel_estudios) FROM `trabajadores` WHERE nivel_estudios="Superior Incompleta"');
+	const sup_com = await pool.query('SELECT count(nivel_estudios) FROM `trabajadores` WHERE nivel_estudios="Superior"');
+
+	//console.log(bas_in);
+	//console.log(bas_com);
+	//console.log(med_in);
+	//console.log(med_com);
+	//console.log(sup_in);
+	//console.log(sup_com);
+
+	var Capacitaciones = await pool.query('SELECT nombre FROM `areas`');
+	var areas = {};
+	const sumas_array = {};
+	var count = 0;
+	for(var i = 0; i < Object.keys(Capacitaciones).length;i++){
+		areas[Capacitaciones[i].nombre]= await pool.query('SELECT sum(`nivel_capacitacion`) FROM `trabajadores` where `area` =  "'+Capacitaciones[i].nombre+'";');
+	}
+	res.render('workers/graphic',{areas:areas,bas_in:bas_in,bas_com:bas_com,med_in:med_in,med_com:med_com,sup_in:sup_in,sup_com:sup_com});
 });
 
 module.exports = router;

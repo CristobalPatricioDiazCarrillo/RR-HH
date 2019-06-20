@@ -12,11 +12,56 @@
 			<a href="/trainings" class="btn btn-secondary">CAPACITACIONES</a>
 		</div>
 	</div>
-
-
-	<div class="row">
-		<div class="col-md-12">
-			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<div class="card">
+		<div class="card-header text-right">
+			<a href="/area" class="btn btn-primary">AREAS</a>
+		</div>
+		<div class="card-body" style="background-color: gray;">
+			<div class="card" style="margin-bottom: 2%;">
+				<div class="card-header">
+					<b>Noticias</b>
+				</div>
+				<div class="card-body">
+					<form action="/profile/notice" method="POST">
+						<textarea name="noticia" rows="8" class="form-control" placeholder="Noticia" style="max-width: 100%">{{noticia}}</textarea>
+						<div class="form-group text-center" style="padding-top: 2%;">
+							<button class="btn btn-success">
+								Guardar
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="card" style="margin-bottom: 2%;">
+				<div class="card-header">
+					<b>Mision</b>
+				</div>
+				<div class="card-body">
+					<form action="/profile/mision" method="POST">
+						<textarea name="mision" rows="8" class="form-control" placeholder="Noticia" style="max-width: 100%">{{mision}}</textarea>
+						<div class="form-group text-center" style="padding-top: 2%;">
+							<button class="btn btn-success">
+								Guardar
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="card" style="margin-bottom: 2%;">
+				<div class="card-header">
+					<b>Vision</b>
+				</div>
+				<div class="card-body">
+					<form action="/profile/vision" method="POST">
+						<textarea name="vision" rows="8" class="form-control" placeholder="Noticia" style="max-width: 100%">{{vision}}</textarea>
+						<div class="form-group text-center" style="padding-top: 2%;">
+							<button class="btn btn-success">
+								Guardar
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

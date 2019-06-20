@@ -16,6 +16,7 @@
 					{{#each areas}}
 						<option value="{{nombre}}">{{nombre}}</option>
 					{{/each}}
+					<option value="eliminados">Eliminados</option>
 				</select>
 		    	<button class="btn btn-primary" type="submit" style="margin-right: 1%;">Search</button>
 		    	<a href="/workers/add" class="btn btn-secondary">Agregar</a>
@@ -35,8 +36,11 @@
 						<img src="/{{image}}.jpg" alt="" class="card-img-top mx-auto m-2 rounded-circle" style="height: 25vh; width: 25vh;">
 						<p class="m-2">Rut: {{rut}}</p>
 						<p class="m-2">Area: {{area}}</p>
+						{{#if estado}}
+						{{else}}
 						<a href="/workers/delete/{{id}}" class="btn btn-danger">Eliminar</a>
 						<a href="/workers/edit/{{id}}" class="btn btn-secondary">Actualizar</a>
+						{{/if}}
 					</div>
 				</div>
 			</div>
@@ -44,7 +48,6 @@
 			<div class="col-md-4 mx-auto">
 				<div class="card card-body text-center">
 					<p>No hay trabajadores registrados</p>
-					<a href="/workers/add">Crea uno</a>
 				</div>
 			</div>
 		{{/each}}

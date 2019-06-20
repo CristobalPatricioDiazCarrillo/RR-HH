@@ -1,0 +1,126 @@
+<div style="padding-top: 2.2%; padding-bottom: 1%;">
+	<div class="row" style="">
+		<div class="col-md-12">
+			<nav aria-label="breadcrumb" style="margin-left: 0.9%; margin-right: 0.9%;">
+				<ol class="breadcrumb" style="padding-left: 2.7%; background-color: white; padding-top: 2.51%; padding-bottom: 2.51%; border-radius: 10px;">
+					<li class="breadcrumb-item"><a href="/profile">INICIO</a></li>
+					<li class="breadcrumb-item"><a href="/trainings">CAPACITACIONES</a></li>
+					{{#each capacitacion}}
+					<li class="breadcrumb-item active"><font style="text-transform: uppercase;">{{nombre}}</font></li>
+					{{/each}}
+				</ol>
+			</nav>
+		</div>	
+	</div>
+		
+	{{#each capacitacion}}
+		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-9">
+						<h4 class="text-uppercase m-2">
+							{{nombre}}
+						</h4>
+					</div>
+					<div class="col-md-3 text-center">
+						<a href="/trainings/delete/{{id}}" class="btn btn-danger">Eliminar</a>
+						<a href="/trainings/edit/{{id}}" class="btn btn-secondary">Actualizar</a>
+					</div>
+				</div>		
+			</div>
+			<div class="card-body" style="background-color: #DAD9D4;">
+				<div class="row" style="padding-bottom: 1%">
+					<div class="col-md-1">
+					</div>
+					<div class="col-md-10">
+						<h6>
+							<div class="row" style="background-color: white; padding-top: 1%;">	
+								<div class="col-md-6">
+								Nombre:
+								</div>
+								<div class="col-md-6" style="color:gray;">
+									{{nombre}}
+								</div>
+							</div>
+							<div class="row" style="background-color: white; padding-top: 1%;">	
+								<div class="col-md-6">
+								Fecha:
+								</div>
+								<div class="col-md-6" style="color:gray;">
+									{{fecha}}
+								</div>
+							</div>
+							<div class="row" style="background-color: white; padding-top: 1%;">	
+								<div class="col-md-6">
+								Descripción:
+								</div>
+								<div class="col-md-6" style="color:gray;">
+									{{descripcion}}
+								</div>
+							</div>
+							<div class="row" style="background-color: white; padding-top: 1%; padding-bottom: 1%">	
+								<div class="col-md-6">
+								Area:
+								</div>
+								<div class="col-md-6" style="color:gray;">
+									<a href="/workers/search/none.{{area}}" class="btn btn-secondary">{{area}}</a>
+								</div>
+							</div>
+						</h6>
+					</div>
+					<div class="col-md-1">
+					</div>
+				</div>
+				{{/each}}
+				<div class="card">
+					<div class="card-header">
+						<b>Trabajadores</b>
+					</div>
+					<div class="card-body">
+						<div class="container" style="border:solid;">
+							<b>
+								<div class="row" style="border-bottom:solid;">
+									<div class="col-md-6" style="border-right: solid;">
+										Nombre
+									</div>
+									<div class="col-md-2" style="border-right: solid;">
+										Rut
+									</div>
+									<div class="col-md-2"  style="border-right: solid;">
+										Area
+									</div>
+									<div class="col-md-2">
+										Participacion
+									</div>
+								</div>
+							</b>
+						{{#each trabajadores}}
+							<div class="row" style="border-bottom:solid 1px;">
+								<div class="col-md-6" style="border-right: solid 1px;">
+									{{nombre}} {{apellido}}
+								</div>
+								<div class="col-md-2 text-center" style="border-right: solid 1px;">
+									{{rut}}
+								</div>
+								<div class="col-md-2 text-center" style="border-right: solid 1px;">
+									{{area}}
+								</div>
+								<div class="col-md-2 text-center">
+									{{#if agregar}}
+									<form action="/trainings/view/add/{{link}}" method="POST">
+										<button type="submit" class="btn btn-danger">+</button>
+									</form>
+									{{else}}
+									<form action="/trainings/view/delete/{{link}}" method="POST">
+										<button type="submit" class="btn btn-secondary">-</button>
+									</form>
+									{{/if}}
+								</div>
+							</div>
+						{{/each}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>

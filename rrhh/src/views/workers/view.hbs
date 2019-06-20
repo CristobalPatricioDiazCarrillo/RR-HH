@@ -23,8 +23,11 @@
 						</h4>
 					</div>
 					<div class="col-md-3 text-center">
+						{{#if estado}}
+						{{else}}
 						<a href="/workers/delete/{{id}}" class="btn btn-danger">Eliminar</a>
 						<a href="/workers/edit/{{id}}" class="btn btn-secondary">Actualizar</a>
+						{{/if}}
 					</div>
 				</div>		
 			</div>
@@ -183,25 +186,30 @@
 						<div ></div>
 						{{/each}}
 					</div>
-					<div class="card-header">
-						<b>Agregar Observacion</b>
-					</div>
-					<div class="card-body">
-						<center>
-							<form action="/view/{{trabajador.id}}" method="POST">
-								<div class="form-group">
-									<input type="text" name="asunto" class="form-control" placeholder="Asunto" style="max-width: 70%">
-									<input type="date" name="fecha_desc" class="form-control" placeholder="Fecha" style="max-width: 70%">
-									<textarea name="descripcion" rows="8" class="form-control" placeholder="Descripcion" style="max-width: 70%"></textarea>
-								</div>
-								<div class="form-group">
-									<button class="btn btn-success">
-										Guardar
-									</button>
-								</div>
-							</form>
-						</center>
-					</div>
+					{{#each trabajador}}
+						{{#if estado}}
+						{{else}}
+							<div class="card-header">
+								<b>Agregar Observacion</b>
+							</div>
+							<div class="card-body">
+								<center>
+									<form action="/view/{{trabajador.id}}" method="POST">
+										<div class="form-group">
+											<input type="text" name="asunto" class="form-control" placeholder="Asunto" style="max-width: 70%">
+											<input type="date" name="fecha_desc" class="form-control" placeholder="Fecha" style="max-width: 70%">
+											<textarea name="descripcion" rows="8" class="form-control" placeholder="Descripcion" style="max-width: 70%"></textarea>
+										</div>
+										<div class="form-group">
+											<button class="btn btn-success">
+												Guardar
+											</button>
+										</div>
+									</form>
+								</center>
+							</div>
+						{{/if}}
+					{{/each}}
 				</div>
 			</div>
 		</div>

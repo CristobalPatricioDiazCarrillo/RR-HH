@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const pool = require('../database');
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 
 router.get('/signup', isNotLoggedIn, (req, res) => {
@@ -23,10 +24,6 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
 		failureRedirect: '/signin',
 		failureFlash: true
 	})(req, res, next);
-});
-
-router.get('/profile', isLoggedIn, (req, res) => {
-	res.render('other/profile');
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
